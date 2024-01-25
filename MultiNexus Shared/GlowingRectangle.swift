@@ -18,10 +18,16 @@ struct GlowingRectangle: View {
                 .shadow(color: color, radius: 25)
                 .frame(width: frame.width, height: frame.height)
         }
-        .frame(width: frame.width + 50, height: frame.height + 50)
+//        .frame(width: frame.width + 10, height: frame.height + 10)
     }
 }
 
 #Preview {
     GlowingRectangle(color: .cyan, frame: CGSize(width: 100, height: 100))
+        .border(.red)
+}
+
+#Preview {
+    GlowingRectangle(color: .cyan, frame: CGSize(width: 10, height: 10))
+        .border(.red)
 }

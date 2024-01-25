@@ -10,12 +10,15 @@ import SwiftUI
 
 class GameScene: SKScene {
     
-    private let lightSpeed: TimeInterval = 6
+    private let lightSpeed: TimeInterval = 10
     private var redImageLightNode: SKSpriteNode?
     private var greenImageLightNode: SKSpriteNode?
     private var blueImageLightNode: SKSpriteNode?
     private var yellowImageLightNode: SKSpriteNode?
 
+    var maxLenght: Double {
+        max(view!.scene!.size.height, view!.scene!.size.width)
+    }
     
     class func newGameScene() -> GameScene {
         // Load 'GameScene.sks' as an SKScene.
@@ -72,39 +75,39 @@ class GameScene: SKScene {
         
         // Up
         if let n = shuffledLightNodes[0]?.copy() as! SKSpriteNode? {
-            n.position = CGPoint(x: pos.x, y: pos.y - n.calculateAccumulatedFrame().width)
+            n.position = CGPoint(x: pos.x, y: pos.y - (n.calculateAccumulatedFrame().height / 2))
             n.run(SKAction.sequence([
-                SKAction.moveTo(y: pos.y + view!.scene!.size.height, duration: lightSpeed),
+                SKAction.moveTo(y: pos.y + maxLenght, duration: lightSpeed),
                 SKAction.removeFromParent()]))
             self.addChild(n)
         }
         
         // Down
         if let n = shuffledLightNodes[1]?.copy() as! SKSpriteNode? {
-            n.position = CGPoint(x: pos.x, y: pos.y + n.calculateAccumulatedFrame().width)
             n.zRotation = Angle(degrees: 180).radians
+            n.position = CGPoint(x: pos.x, y: pos.y + (n.calculateAccumulatedFrame().height / 2))
             n.run(SKAction.sequence([
-                SKAction.moveTo(y: pos.y - view!.scene!.size.height, duration: lightSpeed),
+                SKAction.moveTo(y: pos.y - maxLenght, duration: lightSpeed),
                 SKAction.removeFromParent()]))
             self.addChild(n)
         }
         
         // Left
         if let n = shuffledLightNodes[2]?.copy() as! SKSpriteNode? {
-            n.position = CGPoint(x: pos.x + n.calculateAccumulatedFrame().width, y: pos.y)
             n.zRotation = Angle(degrees: 90).radians
+            n.position = CGPoint(x: pos.x + (n.calculateAccumulatedFrame().width / 2), y: pos.y)
             n.run(SKAction.sequence([
-                SKAction.moveTo(x: pos.x - view!.scene!.size.width, duration: lightSpeed),
+                SKAction.moveTo(x: pos.x - maxLenght, duration: lightSpeed),
                 SKAction.removeFromParent()]))
             self.addChild(n)
         }
         
         // Right
         if let n = shuffledLightNodes[3]?.copy() as! SKSpriteNode? {
-            n.position = CGPoint(x: pos.x - n.calculateAccumulatedFrame().width, y: pos.y)
             n.zRotation = Angle(degrees: 270).radians
+            n.position = CGPoint(x: pos.x - (n.calculateAccumulatedFrame().width / 2), y: pos.y)
             n.run(SKAction.sequence([
-                SKAction.moveTo(x: pos.x + view!.scene!.size.width, duration: lightSpeed),
+                SKAction.moveTo(x: pos.x + maxLenght, duration: lightSpeed),
                 SKAction.removeFromParent()]))
             self.addChild(n)
         }
