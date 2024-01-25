@@ -30,6 +30,15 @@
 		9CBE007A2B620C03005ACF85 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9CBE00412B620C03005ACF85 /* Assets.xcassets */; };
 		9CBE007B2B620C03005ACF85 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9CBE00412B620C03005ACF85 /* Assets.xcassets */; };
 		9CBE007C2B620C03005ACF85 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9CBE00412B620C03005ACF85 /* Assets.xcassets */; };
+		9CBE008B2B621055005ACF85 /* NexusRectangle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CBE00882B621054005ACF85 /* NexusRectangle.swift */; };
+		9CBE008C2B621055005ACF85 /* NexusRectangle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CBE00882B621054005ACF85 /* NexusRectangle.swift */; };
+		9CBE008D2B621055005ACF85 /* NexusRectangle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CBE00882B621054005ACF85 /* NexusRectangle.swift */; };
+		9CBE008E2B621055005ACF85 /* RectangleTail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CBE00892B621054005ACF85 /* RectangleTail.swift */; };
+		9CBE008F2B621055005ACF85 /* RectangleTail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CBE00892B621054005ACF85 /* RectangleTail.swift */; };
+		9CBE00902B621055005ACF85 /* RectangleTail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CBE00892B621054005ACF85 /* RectangleTail.swift */; };
+		9CBE00912B621055005ACF85 /* GlowingRectangle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CBE008A2B621055005ACF85 /* GlowingRectangle.swift */; };
+		9CBE00922B621055005ACF85 /* GlowingRectangle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CBE008A2B621055005ACF85 /* GlowingRectangle.swift */; };
+		9CBE00932B621055005ACF85 /* GlowingRectangle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CBE008A2B621055005ACF85 /* GlowingRectangle.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,6 +61,9 @@
 		9CBE006B2B620C03005ACF85 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		9CBE006E2B620C03005ACF85 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		9CBE00702B620C03005ACF85 /* MultiNexus_macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MultiNexus_macOS.entitlements; sourceTree = "<group>"; };
+		9CBE00882B621054005ACF85 /* NexusRectangle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NexusRectangle.swift; sourceTree = "<group>"; };
+		9CBE00892B621054005ACF85 /* RectangleTail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RectangleTail.swift; sourceTree = "<group>"; };
+		9CBE008A2B621055005ACF85 /* GlowingRectangle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlowingRectangle.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +108,9 @@
 				9CBE003E2B620C01005ACF85 /* Actions.sks */,
 				9CBE003F2B620C01005ACF85 /* GameScene.sks */,
 				9CBE00402B620C01005ACF85 /* GameScene.swift */,
+				9CBE008A2B621055005ACF85 /* GlowingRectangle.swift */,
+				9CBE00882B621054005ACF85 /* NexusRectangle.swift */,
+				9CBE00892B621054005ACF85 /* RectangleTail.swift */,
 				9CBE00412B620C03005ACF85 /* Assets.xcassets */,
 			);
 			path = "MultiNexus Shared";
@@ -282,9 +297,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9CBE008E2B621055005ACF85 /* RectangleTail.swift in Sources */,
 				9CBE00772B620C03005ACF85 /* GameScene.swift in Sources */,
 				9CBE004C2B620C03005ACF85 /* GameViewController.swift in Sources */,
 				9CBE004A2B620C03005ACF85 /* AppDelegate.swift in Sources */,
+				9CBE008B2B621055005ACF85 /* NexusRectangle.swift in Sources */,
+				9CBE00912B621055005ACF85 /* GlowingRectangle.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -292,9 +310,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9CBE008F2B621055005ACF85 /* RectangleTail.swift in Sources */,
 				9CBE00782B620C03005ACF85 /* GameScene.swift in Sources */,
 				9CBE005C2B620C03005ACF85 /* GameViewController.swift in Sources */,
 				9CBE005A2B620C03005ACF85 /* AppDelegate.swift in Sources */,
+				9CBE008C2B621055005ACF85 /* NexusRectangle.swift in Sources */,
+				9CBE00922B621055005ACF85 /* GlowingRectangle.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -302,9 +323,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9CBE00902B621055005ACF85 /* RectangleTail.swift in Sources */,
 				9CBE00792B620C03005ACF85 /* GameScene.swift in Sources */,
 				9CBE006C2B620C03005ACF85 /* GameViewController.swift in Sources */,
 				9CBE006A2B620C03005ACF85 /* AppDelegate.swift in Sources */,
+				9CBE008D2B621055005ACF85 /* NexusRectangle.swift in Sources */,
+				9CBE00932B621055005ACF85 /* GlowingRectangle.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

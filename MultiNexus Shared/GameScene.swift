@@ -6,12 +6,19 @@
 //
 
 import SpriteKit
+import SwiftUI
 
 class GameScene: SKScene {
     
     
     fileprivate var label : SKLabelNode?
     fileprivate var spinnyNode : SKShapeNode?
+    
+    private let lightSpeed: TimeInterval = 5
+    private var redImageLightNode: SKSpriteNode?
+    private var greenImageLightNode: SKSpriteNode?
+    private var blueImageLightNode: SKSpriteNode?
+    private var yellowImageLightNode: SKSpriteNode?
 
     
     class func newGameScene() -> GameScene {
@@ -28,24 +35,21 @@ class GameScene: SKScene {
     }
     
     func setUpScene() {
-        // Get label node from scene and store it for use later
-        self.label = self.childNode(withName: "//helloLabel") as? SKLabelNode
-        if let label = self.label {
-            label.alpha = 0.0
-            label.run(SKAction.fadeIn(withDuration: 2.0))
-        }
+        let redTexture = SKTexture(image: getNSImage(color: .red, newSize: CGSize(width: 10, height: 10))!)
+        redImageLightNode = SKSpriteNode(texture: redTexture)
+        redImageLightNode?.blendMode = .screen
         
-        // Create shape node to use during mouse interaction
-        let w = (self.size.width + self.size.height) * 0.05
-        self.spinnyNode = SKShapeNode.init(rectOf: CGSize.init(width: w, height: w), cornerRadius: w * 0.3)
+        let greenTexture = SKTexture(image: getNSImage(color: .green, newSize: CGSize(width: 10, height: 10))!)
+        greenImageLightNode = SKSpriteNode(texture: greenTexture)
+        greenImageLightNode?.blendMode = .screen
         
-        if let spinnyNode = self.spinnyNode {
-            spinnyNode.lineWidth = 4.0
-            spinnyNode.run(SKAction.repeatForever(SKAction.rotate(byAngle: CGFloat(Double.pi), duration: 1)))
-            spinnyNode.run(SKAction.sequence([SKAction.wait(forDuration: 0.5),
-                                              SKAction.fadeOut(withDuration: 0.5),
-                                              SKAction.removeFromParent()]))
-        }
+        let blueTexture = SKTexture(image: getNSImage(color: .cyan, newSize: CGSize(width: 10, height: 10))!)
+        blueImageLightNode = SKSpriteNode(texture: blueTexture)
+        blueImageLightNode?.blendMode = .screen
+        
+        let yellowTexture = SKTexture(image: getNSImage(color: .yellow, newSize: CGSize(width: 10, height: 10))!)
+        yellowImageLightNode = SKSpriteNode(texture: yellowTexture)
+        yellowImageLightNode?.blendMode = .screen
     }
     
     override func didMove(to view: SKView) {
@@ -62,6 +66,60 @@ class GameScene: SKScene {
     
     override func update(_ currentTime: TimeInterval) {
         // Called before each frame is rendered
+    }
+    
+    @MainActor
+    private func getNSImage(color: Color, newSize: CGSize) -> UIImage? {
+        let image = NexusRectangle(color: color, frame: newSize)
+        return ImageRenderer(content: image).uiImage
+    }
+    
+    private func createLightSystem(atPoint pos: CGPoint) {
+        let shuffledLightNodes: [SKSpriteNode?] = [
+            redImageLightNode,
+            greenImageLightNode,
+            blueImageLightNode,
+            yellowImageLightNode
+        ].shuffled()
+        
+        // Up
+        if let n = shuffledLightNodes[0]?.copy() as! SKSpriteNode? {
+            n.position = CGPoint(x: pos.x, y: pos.y - n.calculateAccumulatedFrame().width)
+            n.run(SKAction.sequence([
+                SKAction.moveTo(y: pos.y + view!.scene!.size.height, duration: lightSpeed),
+                SKAction.removeFromParent()]))
+            self.addChild(n)
+        }
+        
+        // Down
+        if let n = shuffledLightNodes[1]?.copy() as! SKSpriteNode? {
+            n.position = CGPoint(x: pos.x, y: pos.y + n.calculateAccumulatedFrame().width)
+            n.zRotation = Angle(degrees: 180).radians
+            n.run(SKAction.sequence([
+                SKAction.moveTo(y: pos.y - view!.scene!.size.height, duration: lightSpeed),
+                SKAction.removeFromParent()]))
+            self.addChild(n)
+        }
+        
+        // Left
+        if let n = shuffledLightNodes[2]?.copy() as! SKSpriteNode? {
+            n.position = CGPoint(x: pos.x + n.calculateAccumulatedFrame().width, y: pos.y)
+            n.zRotation = Angle(degrees: 90).radians
+            n.run(SKAction.sequence([
+                SKAction.moveTo(x: pos.x - view!.scene!.size.width, duration: lightSpeed),
+                SKAction.removeFromParent()]))
+            self.addChild(n)
+        }
+        
+        // Right
+        if let n = shuffledLightNodes[3]?.copy() as! SKSpriteNode? {
+            n.position = CGPoint(x: pos.x - n.calculateAccumulatedFrame().width, y: pos.y)
+            n.zRotation = Angle(degrees: 270).radians
+            n.run(SKAction.sequence([
+                SKAction.moveTo(x: pos.x + view!.scene!.size.width, duration: lightSpeed),
+                SKAction.removeFromParent()]))
+            self.addChild(n)
+        }
     }
 }
 
