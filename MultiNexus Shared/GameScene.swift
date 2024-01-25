@@ -10,11 +10,7 @@ import SwiftUI
 
 class GameScene: SKScene {
     
-    
-    fileprivate var label : SKLabelNode?
-    fileprivate var spinnyNode : SKShapeNode?
-    
-    private let lightSpeed: TimeInterval = 5
+    private let lightSpeed: TimeInterval = 6
     private var redImageLightNode: SKSpriteNode?
     private var greenImageLightNode: SKSpriteNode?
     private var blueImageLightNode: SKSpriteNode?
@@ -54,14 +50,6 @@ class GameScene: SKScene {
     
     override func didMove(to view: SKView) {
         self.setUpScene()
-    }
-
-    func makeSpinny(at pos: CGPoint, color: SKColor) {
-        if let spinny = self.spinnyNode?.copy() as! SKShapeNode? {
-            spinny.position = pos
-            spinny.strokeColor = color
-            self.addChild(spinny)
-        }
     }
     
     override func update(_ currentTime: TimeInterval) {
@@ -128,31 +116,27 @@ class GameScene: SKScene {
 extension GameScene {
 
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        if let label = self.label {
-            label.run(SKAction.init(named: "Pulse")!, withKey: "fadeInOut")
-        }
-        
         for t in touches {
-            self.makeSpinny(at: t.location(in: self), color: SKColor.green)
+            createLightSystem(atPoint: t.location(in: self))
         }
     }
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
         for t in touches {
-            self.makeSpinny(at: t.location(in: self), color: SKColor.blue)
+            createLightSystem(atPoint: t.location(in: self))
         }
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         for t in touches {
-            self.makeSpinny(at: t.location(in: self), color: SKColor.red)
+//            createLightSystem(atPoint: t.location(in: self))
         }
     }
     
     override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
-        for t in touches {
-            self.makeSpinny(at: t.location(in: self), color: SKColor.red)
-        }
+//        for t in touches {
+//            self.makeSpinny(at: t.location(in: self), color: SKColor.red)
+//        }
     }
     
    
@@ -164,9 +148,6 @@ extension GameScene {
 extension GameScene {
 
     override func mouseDown(with event: NSEvent) {
-        if let label = self.label {
-            label.run(SKAction.init(named: "Pulse")!, withKey: "fadeInOut")
-        }
         self.makeSpinny(at: event.location(in: self), color: SKColor.green)
     }
     
