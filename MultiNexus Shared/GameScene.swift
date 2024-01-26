@@ -49,6 +49,8 @@ class GameScene: SKScene {
         let yellowTexture = SKTexture(image: getNSImage(color: .yellow, newSize: CGSize(width: 10, height: 10))!)
         yellowImageLightNode = SKSpriteNode(texture: yellowTexture)
         yellowImageLightNode?.blendMode = .screen
+        
+        spawnMultipleLightSystems()
     }
     
     override func didMove(to view: SKView) {
@@ -111,6 +113,18 @@ class GameScene: SKScene {
                 SKAction.removeFromParent()]))
             self.addChild(n)
         }
+    }
+    
+    private func spawnMultipleLightSystems() {
+        // Set up repeating action
+        let wait = SKAction.wait(forDuration: TimeInterval(0.5))
+        let spawn = SKAction.run { [unowned self] in
+            self.createLightSystem(atPoint: CGPoint(x: CGFloat.random(in: 0...view!.scene!.size.width), y: CGFloat.random(in: 0...view!.scene!.size.height)))
+        }
+        let sequence = SKAction.sequence([wait, spawn])
+        let repeatAction = SKAction.repeatForever(sequence)
+        // Run action
+        run(repeatAction, withKey: "lightSystem")
     }
 }
 
