@@ -14,7 +14,7 @@ struct NexusRectangle: View {
     var body: some View {
         VStack(spacing: -25) {
             GlowingRectangle(color: color, frame: CGSize(width: frame.width, height: frame.width))
-            RectangleTail(color: color, frame: CGSize(width: frame.width, height: frame.width * 10))
+            RectangleTail(color: color, frame: CGSize(width: frame.width, height: frame.width * 15))
         }
     }
 }
