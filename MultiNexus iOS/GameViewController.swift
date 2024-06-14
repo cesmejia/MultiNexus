@@ -20,8 +20,8 @@ class GameViewController: UIViewController {
         scene.scaleMode = .aspectFill
         scene.backgroundColor = .black
         skView.ignoresSiblingOrder = true
-        skView.showsFPS = true
-        skView.showsNodeCount = true
+        skView.showsFPS = false
+        skView.showsNodeCount = false
     }
 
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
