@@ -1,4 +1,4 @@
-# Google-live Nexus Live wallpaper for iOS (iPhone, iPad, MacOS)
+# Google-like Nexus Live wallpaper for iOS (iPhone, iPad, MacOS)
 
 - Supports Multitouch
 - Optimized for node performance
